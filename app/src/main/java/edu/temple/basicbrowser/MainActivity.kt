@@ -6,6 +6,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,5 +29,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        goButton.setOnClickListener{
+            var website = urlEditText.text.toString()
+            if (!website.startsWith("http://")) {
+                Toast.makeText(this, "Always enter web URLs with their protocol, e.g. 'https'", Toast.LENGTH_LONG).show()
+                website = "https://" + website
+            }
+            webView.loadUrl(website)
+        }
     }
 }
